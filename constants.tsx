@@ -1,0 +1,116 @@
+
+import { SoundscapeAppState } from './types';
+
+export const INITIAL_STATE: SoundscapeAppState = {
+  globalSettings: {
+    masterVolume: 0.75,
+    aiRecommendationMode: 'AMBIENT',
+    spatialAudioEnabled: true,
+    lowLatencyMode: false,
+    activeProfileId: 'user-001',
+    theme: 'DARK',
+  },
+  environmentalData: {
+    weatherCondition: 'CLEAR',
+    temperatureCelsius: 20,
+    humidityPercentage: 60,
+    windSpeedKPH: 5,
+    timeOfDay: 'MORNING',
+    ambientNoiseLevelDB: 45,
+    geoCoordinates: { lat: 34.0522, lon: -118.2437 },
+    locationName: 'Los Angeles, CA',
+  },
+  officeSensorData: {
+    occupancyCount: 15,
+    averageActivityLevel: 'MEDIUM',
+    meetingRoomStatus: [
+      { roomId: 'conf-A', isOccupied: false, schedule: '10:00-11:00 Sync' },
+      { roomId: 'pod-1', isOccupied: true, schedule: 'Ad-hoc' },
+    ],
+    calendarEvents: [
+      { eventName: 'Team Meeting', startTime: new Date().toISOString(), endTime: new Date(Date.now() + 3600000).toISOString(), impact: 'HIGH' },
+    ],
+    energyConsumptionKW: 120,
+  },
+  userProfiles: [
+    {
+      id: 'user-001',
+      username: 'Alice Smith',
+      favoritePresets: ['preset-001'],
+      customSoundscapes: [],
+      personalSettings: {
+        masterVolume: 0.8,
+        spatialAudioEnabled: true,
+        notificationsEnabled: true,
+        preferredLanguage: 'en-US',
+        aiRecommendationsEnabled: true,
+        theme: 'DARK',
+      },
+      lastActiveSoundscapeId: 'preset-001',
+      sessionHistory: [],
+    },
+  ],
+  soundAssets: [
+    { id: 'rain', name: 'Light Rain', category: 'NATURE', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', durationSeconds: 120, tags: ['rain', 'calm'], isCustomUpload: false },
+    { id: 'lofi', name: 'Lo-fi Beats', category: 'MUSIC', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', durationSeconds: 300, tags: ['focus', 'music'], isCustomUpload: false },
+    { id: 'forest', name: 'Forest Ambience', category: 'NATURE', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', durationSeconds: 180, tags: ['nature', 'relax'], isCustomUpload: false },
+    { id: 'cafe', name: 'Coffee Shop', category: 'AMBIENT', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', durationSeconds: 180, tags: ['social', 'focus'], isCustomUpload: false },
+    { id: 'waves', name: 'Ocean Waves', category: 'NATURE', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3', durationSeconds: 240, tags: ['nature', 'calm'], isCustomUpload: false },
+    { id: 'synth', name: 'Deep Focus Synth', category: 'MUSIC', filePath: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3', durationSeconds: 300, tags: ['music', 'ambient'], isCustomUpload: false },
+  ],
+  availablePresets: [
+    {
+      id: 'preset-001',
+      name: 'Focus Rain',
+      description: 'The perfect mix for deep concentration on rainy days.',
+      layers: [
+        { id: 'l1', name: 'Rain', assetId: 'rain', volume: 0.6, pan: 0, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+        { id: 'l2', name: 'Lo-fi', assetId: 'lofi', volume: 0.4, pan: 0, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+      ],
+      adaptiveRules: [],
+      tags: ['focus', 'rain'],
+      isCustom: false,
+    },
+    {
+      id: 'preset-002',
+      name: 'Nature Zen',
+      description: 'Forest sounds and ocean waves to relieve stress.',
+      layers: [
+        { id: 'l3', name: 'Forest', assetId: 'forest', volume: 0.5, pan: -0.5, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+        { id: 'l4', name: 'Waves', assetId: 'waves', volume: 0.5, pan: 0.5, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+      ],
+      adaptiveRules: [],
+      tags: ['nature', 'relax'],
+      isCustom: false,
+    },
+  ],
+  activeSoundscape: {
+    id: 'preset-001',
+    name: 'Focus Rain',
+    description: 'The perfect mix for deep concentration on rainy days.',
+    layers: [
+      { id: 'l1', name: 'Rain', assetId: 'rain', volume: 0.6, pan: 0, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+      { id: 'l2', name: 'Lo-fi', assetId: 'lofi', volume: 0.4, pan: 0, isEnabled: true, isMuted: false, isSoloed: false, loop: true, startTimeOffsetSeconds: 0, endTimeOffsetSeconds: 0, effects: [] },
+    ],
+    activeAdaptiveRules: [],
+    startTime: new Date().toISOString(),
+    lastUpdated: new Date().toISOString(),
+  },
+  audioEngine: {
+    isPlaying: false,
+    currentPlaybackTimeSeconds: 0,
+    bufferedSources: [],
+    outputDevice: 'System Default',
+    masterVolume: 0.75,
+    spatialAudioEnabled: true,
+    lowLatencyMode: false,
+  },
+  notifications: [],
+  logs: [],
+  isLoading: false,
+  error: null,
+  activeAdminTab: 'ASSETS',
+  activeProfileManagementTab: 'OVERVIEW',
+  activeSettingsTab: 'GENERAL',
+  activeDashboardTab: 'OVERVIEW',
+};

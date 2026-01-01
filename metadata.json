@@ -1,0 +1,7 @@
+{
+  "name": "AuraPulse: Dynamic Soundscape Generator",
+  "description": "An intelligent, agentic soundscape platform that uses real-time environmental data and Gemini AI to orchestrate personalized auditory environments for focus and well-being.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
